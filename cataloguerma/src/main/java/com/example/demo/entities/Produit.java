@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +20,7 @@ public class Produit {
 	double pu;
 	int qte;
 	
+	@JsonIgnore
 	@ManyToOne()
 	Categorie categorie;
 

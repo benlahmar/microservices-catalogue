@@ -27,8 +27,8 @@ public class CataloguermaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		service.findByX(p->p.getQte()>12);
-		service.findByX(p-> p.getDesg().contains("abc"));
+//		service.findByX(p->p.getQte()>12);
+//		service.findByX(p-> p.getDesg().contains("abc"));
 		
 		
 	}

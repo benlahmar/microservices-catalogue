@@ -38,23 +38,23 @@ public class CategorieAspect {
 	
 	
 	@AfterReturning(
-			pointcut = "execution (* com.example.demo.repo.IProduit.*(..))",
+			pointcut = "execution (* com.example.demo.repo.IProduit.save(..))",
 			returning = "res")
 	public void verifier(JoinPoint jp,Object res)
 	{
 		log.info(jp.getSignature().getName()+"----"+jp.getSignature().getDeclaringTypeName());
 		log.info(res.toString());
 	}
-	@AfterThrowing(pointcut = "execution (* com.example.demo.repo.IProduit.*(..)",
+	@AfterThrowing(pointcut = "execution (* com.example.demo.repo.IProduit.*(..))",
 			throwing = "e")
 	public void exept(Object e)
 	{
 		log.info(e.toString());
 	}
 	
-	@Around("execution (* com.example.demo.repo.IProduit.*(..)")
-	public void desinfo()
-	{
-		log.info("arround ");
-	}
+//	@Around("execution (* com.example.demo.repo.IProduit.*(..))")
+//	public void desinfo()
+//	{
+//		log.info("arround ");
+//	}
 }

@@ -3,8 +3,11 @@ package com.example.demo.services;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Categorie;
@@ -49,14 +52,40 @@ public class CatalogueService implements Iservice {
 
 	@Override
 	public List<Produit> allprd(long idcat) {
-		// TODO Auto-generated method stub
+		
 		return prepo.findByCategorieId(idcat);
 	}
 
 	@Override
 	public List<Produit> findByX(Predicate<Produit> predicat) {
+		List<Produit> res = prepo.findAll()
+							.stream()
+							.filter(predicat)
+							.collect(Collectors.toList());
 		
-		return null;
+		
+		
+		return res;
+	}
+
+	@Override
+	public Produit findProduitById(long id) {
+		
+		return prepo.findById(id).orElse(new Produit());
+	}
+
+	@Override
+	public void deleteprd(long id) {
+		Optional<Produit> pp = prepo.findById(id);
+		Produit pt = pp.orElseThrow();
+		prepo.delete(pt);
+		
+	}
+
+	@Override
+	public Page<Categorie> allCategoriesbypage(Pageable p) {
+		
+		return crepo.findAll(p);
 	}
 
 }
