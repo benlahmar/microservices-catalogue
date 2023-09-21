@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.ProduitDto;
 import com.example.demo.entities.Categorie;
 import com.example.demo.entities.Produit;
 import com.example.demo.services.Iservice;
@@ -69,6 +70,13 @@ public class CatalogueApi {
 		return service.findProduitById(id);
 	}
 	
+	
+	@GetMapping(path = "/produits2/{id}")
+	public ProduitDto produitbyid2(@PathVariable(name = "id") long id)
+	{
+		return service.findProduitById2(id);
+	}
+	
 	@GetMapping(path = "/produits/searchmc")
 	public List<Produit> searchbymc(@RequestParam(name = "q") String mc)
 	{
@@ -105,9 +113,9 @@ public class CatalogueApi {
 	{
 		try {
 		service.deleteprd(id);
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 		}catch (Exception e) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 		
 	}

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.ProduitDto;
 import com.example.demo.entities.Categorie;
 import com.example.demo.entities.Produit;
 import com.example.demo.repo.ICategorie;
@@ -86,6 +87,12 @@ public class CatalogueService implements Iservice {
 	public Page<Categorie> allCategoriesbypage(Pageable p) {
 		
 		return crepo.findAll(p);
+	}
+
+	@Override
+	public ProduitDto findProduitById2(long id) {
+		return prepo.findprd(id);
+		
 	}
 
 }

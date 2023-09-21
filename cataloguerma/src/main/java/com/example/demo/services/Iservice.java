@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.example.demo.ProduitDto;
 import com.example.demo.entities.Categorie;
 import com.example.demo.entities.Produit;
 
@@ -20,6 +21,8 @@ public interface Iservice {
 	public List<Produit> allprd(long idcat);
 	public List<Produit> findByX(Predicate<Produit> predicat);
 	public Produit findProduitById(long id);
+	
+	public ProduitDto findProduitById2(long id);
 	public void deleteprd(long id);
 	
 	

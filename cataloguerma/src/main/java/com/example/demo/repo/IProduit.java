@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.example.demo.ProduitDto;
 import com.example.demo.entities.Produit;
 
 public interface IProduit extends JpaRepository<Produit, Long>{
@@ -19,4 +20,9 @@ public interface IProduit extends JpaRepository<Produit, Long>{
 	public List<Produit> searchByKw(String k);
 	
 	public List<Produit> findByCategorieId(long id);
+	
+	@Query("from Produit p where p.id=?1")
+	public ProduitDto findprd(long id);
+	
+	List<ProduitDto> findByPuLessThanEqual(double pu);
 }
